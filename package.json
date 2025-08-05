@@ -1,0 +1,22 @@
+{
+  "name": "outsera-nodejs-test",
+  "version": "1.0.0",
+  "description": "Teste de código Back-end NodeJS para processo seletivo da empresa Outsera",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/app.js"
+  },
+  "author": "Itamar Bezerra Junior",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "express": "^4.21.2",
+    "fs": "0.0.1-security",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "supertest": "^7.1.4"
+  }
+}
