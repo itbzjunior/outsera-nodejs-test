@@ -12,15 +12,15 @@ class ProducerService {
     const producerWinners = {};
     
     // Para cada filme encontrado
-    movies.forEach(movie => {
+    for (const movie of movies) {
 
-      // Extraio os nomes dos produtores
+      // Extraio os nomes dos produtores do filme
       // Como pode ter mais de 1, separo os nomes por "," e a palavra "and",
       // Assim consigo ter uma array para poder contar separadamente mais abaixo
       const producers = movie.producers.split(/,| and /).map(p => p.trim());
 
       // Para cada produtor encontrado
-      producers.forEach(producer => {
+      for (const producer of producers) {
 
         // Caso o produtor vencedor não estiver definido
         if (!producerWinners[producer]) {
@@ -29,8 +29,8 @@ class ProducerService {
 
         // Adiciona o ano do filme na lista do produtor
         producerWinners[producer].push(movie.year);
-      });
-    });
+      }
+    }
 
     // Objeto para armazenar os intervalos
     const intervals = [];
@@ -39,32 +39,32 @@ class ProducerService {
     for (const producer in producerWinners) {
 
       // Ordenação crescente dos anos
-      const wins = producerWinners[producer].sort((a, b) => a - b);
+      const sortedYears = producerWinners[producer].sort((a, b) => a - b);
 
       // Para cada ano encontrado
-      for (let i = 1; i < wins.length; i++) {
+      for (let i = 1; i < sortedYears.length; i++) {
 
-        const prevYear = wins[i-1];
-        const currentYear = wins[i];
+        const prevYear = sortedYears[i-1];
+        const currentYear = sortedYears[i];
 
         // Incluo na lista de interválos
         intervals.push({
-          producer: producer,
+          producer,
           interval: currentYear - prevYear, // Calculo do intervalo do ano atual e o anterior
           previousWin: prevYear,
           followingWin: currentYear
         });
       }
-    } 
+    }
 
     // Calculo os intevalos mínimos e máximos
-    const minIntervals = Math.min(...intervals.map(i => i.interval));
-    const maxIntervals = Math.max(...intervals.map(i => i.interval));
+    const minInterval = Math.min(...intervals.map(i => i.interval));
+    const maxInterval = Math.max(...intervals.map(i => i.interval));
 
     // Filtra os produtos que tenham vitórias dentro dos intervalos mínimos e máximos
     return {
-      min: intervals.filter(i => i.interval === minIntervals),
-      max: intervals.filter(i => i.interval === maxIntervals)
+      min: intervals.filter(i => i.interval === minInterval),
+      max: intervals.filter(i => i.interval === maxInterval)
     };
   }
 }
