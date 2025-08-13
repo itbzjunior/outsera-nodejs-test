@@ -73,8 +73,6 @@ npm test
 
 ## Solução de problemas
 
-Caso necessário importar a base novamente, ou limpar e importar novos dados, apagar o arquivo `database.sqlite` do projeto, e roda-lo novamente.
-
 A porta padrão do projeto é 3000. Para altera-la, execute o comando abaixo:
 ```
 PORT=8000 npm start
